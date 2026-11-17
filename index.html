@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gramática Lógica · Prof. Rafael Riemma</title>
+<meta name="description" content="Gramática Lógica: a teoria completa e o caderno de exercícios com gabarito comentado. Quem entende a regra não precisa decorar.">
+<meta property="og:title" content="Gramática Lógica · Prof. Rafael Riemma">
+<meta property="og:description" content="Livro 1 (teoria, 685 páginas) e Livro 2 (exercícios, 401 páginas, com gabarito comentado).">
+<meta property="og:image" content="img/capa-livro-1.jpg">
+<style>
+  @font-face { font-family: "Fraunces"; src: url(fontes/fraunces-latin.woff2) format("woff2"); font-weight: 300 900; font-display: swap; }
+  @font-face { font-family: "Inter"; src: url(fontes/inter-latin.woff2) format("woff2"); font-weight: 300 900; font-display: swap; }
+  @font-face { font-family: "Dancing Script"; src: url(fontes/dancing-script-latin.woff2) format("woff2"); font-weight: 400 700; font-display: swap; }
+  :root {
+    --papel: #fbf8f1; --pauta: #e6ecf4; --tinta: #1b2140; --tinta-2: #4a5170; --muted: #6b7088; --linha: #e2ddd0;
+    --marca: #ffe45c; --botao: #1b2140; --ok: #1f8a4c;
+    --c-sub: #1f5bd6; --c-adj: #1f8a4c; --c-vrb: #a8213a; --c-adv: #a8570a; --c-lig: #6a3fa3;
+    --titulo: "Fraunces", Georgia, serif; --corpo: "Inter", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; font-family: var(--corpo); color: var(--tinta); background: var(--papel); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  .miolo { max-width: 600px; margin: 0 auto; padding: 0 18px; }
+  section { padding: 34px 0; border-top: 1px solid var(--linha); }
+  section:first-of-type { border-top: 0; }
+  h1, h2, h3 { font-family: var(--titulo); line-height: 1.15; margin: 0; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -.01em; }
+  h2 { font-size: 27px; font-weight: 700; margin-bottom: 14px; }
+  h3 { font-size: 19px; font-weight: 700; }
+  p { margin: 0 0 12px; }
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--c-sub); margin-bottom: 8px; }
+  .sub { font-size: 17px; color: var(--tinta-2); }
+  .faixa { height: 6px; border-radius: 99px; display: flex; overflow: hidden; margin: 18px 0; max-width: 260px; }
+  .faixa i { flex: 1; } .faixa i:nth-child(1){background:var(--c-sub)} .faixa i:nth-child(2){background:var(--c-adj)}
+  .faixa i:nth-child(3){background:var(--c-vrb)} .faixa i:nth-child(4){background:var(--c-adv)} .faixa i:nth-child(5){background:var(--c-lig)}
+
+  /* topo */
+  .topo { position: sticky; top: 0; z-index: 5; background: rgba(251,248,241,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--linha); }
+  .topo .miolo { display: flex; align-items: center; gap: 10px; height: 52px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+  .topo .miolo::-webkit-scrollbar { display: none; }
+  .assina { font-family: "Dancing Script", cursive; font-size: 22px; font-weight: 600; margin-right: auto; padding-right: 8px; text-decoration: none; }
+  .topo nav a { font-size: 13.5px; font-weight: 600; text-decoration: none; color: var(--tinta-2); padding: 6px 10px; border-radius: 99px; }
+  @media (max-width: 360px) { .assina { font-size: 19px; } .topo nav a { padding: 6px 6px; font-size: 12.5px; } }
+  .topo nav a:hover { background: #fff; color: var(--tinta); }
+
+  /* capa */
+  .heroi { padding-top: 26px; }
+  .heroi h1 .destaque { background: linear-gradient(transparent 62%, var(--marca) 62%); }
+  .livros { position: relative; height: 330px; margin: 24px auto 8px; max-width: 380px; }
+  .livros img { position: absolute; width: 62%; border-radius: 4px 8px 8px 4px; box-shadow: 0 18px 34px rgba(27,33,64,.22), 0 2px 6px rgba(27,33,64,.12); }
+  .livros .l1 { left: 0; top: 0; transform: rotate(-4deg); z-index: 2; }
+  .livros .l2 { right: 0; top: 34px; transform: rotate(4deg); }
+  .numeros { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 18px 0 20px; text-align: center; }
+  .numeros div { background: #fff; border: 1px solid var(--linha); border-radius: 12px; padding: 10px 4px; }
+  .numeros b { display: block; font-family: var(--titulo); font-size: 24px; line-height: 1.1; }
+  .numeros span { font-size: 12.5px; color: var(--muted); }
+
+  /* preço e botão */
+  .preco { text-align: center; margin: 6px 0 14px; }
+  .selo-black { display: inline-block; background: var(--tinta); color: var(--marca); font-weight: 800; font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: 99px; margin-bottom: 8px; }
+  .preco .de { font-size: 15px; color: var(--muted); }
+  .preco .de s { color: var(--muted); }
+  .preco .por { font-family: var(--titulo); font-size: 46px; font-weight: 800; line-height: 1.05; }
+  .preco .parc { font-size: 14px; color: var(--muted); }
+  .cta { display: block; width: 100%; background: var(--botao); color: #fff; border-radius: 14px; padding: 17px 16px; font-size: 18px; font-weight: 700;
+         text-align: center; text-decoration: none; box-shadow: 0 8px 20px rgba(27,33,64,.25); }
+  .cta:hover { filter: brightness(1.15); }
+  .cta small { display: block; font-size: 13px; font-weight: 500; opacity: .85; margin-top: 2px; }
+  .cta[aria-disabled="true"] { background: #c9ccd6; color: #4a5170; box-shadow: none; border-color: #c9ccd6; pointer-events: none; }
+  .cta.claro { background: #fff; color: var(--tinta); border: 2px solid var(--tinta); box-shadow: none; }
+  .seguro { text-align: center; font-size: 13px; color: var(--muted); margin-top: 10px; }
+
+  /* passos */
+  .passo { display: flex; gap: 14px; margin-bottom: 18px; }
+  .passo .n { flex: none; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-family: var(--titulo); font-weight: 800; font-size: 18px; color: #fff; }
+  .passo p { margin: 4px 0 0; color: var(--tinta-2); }
+  .cores { font-family: var(--titulo); font-size: 22px; font-weight: 700; line-height: 1.3; background: #fff; border: 1px solid var(--linha); border-radius: 12px; padding: 14px; margin: 6px 0 4px; }
+  .cores small { display: block; font-family: var(--corpo); font-size: 12px; font-weight: 500; color: var(--muted); margin-top: 4px; }
+
+  /* galeria */
+  .galeria { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; scroll-snap-type: x mandatory; }
+  .galeria figure { margin: 0; flex: 0 0 78%; scroll-snap-align: start; }
+  .galeria img { border-radius: 6px; border: 1px solid var(--linha); background: #fff; box-shadow: 0 6px 14px rgba(27,33,64,.08); }
+  .galeria figcaption { font-size: 13.5px; color: var(--tinta-2); margin-top: 8px; }
+  .dica-arraste { font-size: 13px; color: var(--muted); margin: -4px 0 10px; }
+
+  /* conteúdo */
+  .caixa { background: #fff; border: 1px solid var(--linha); border-radius: 14px; padding: 16px 18px; margin: 12px 0; }
+  .caixa h3 { margin-bottom: 8px; }
+  .caixa ul { margin: 0; padding-left: 20px; }
+  .caixa li { margin-bottom: 6px; }
+  .partes li b { font-family: var(--titulo); }
+
+  /* ofertas */
+  .oferta { position: relative; background: #fff; border: 2px solid var(--linha); border-radius: 16px; padding: 18px; margin: 14px 0; }
+  .oferta.principal { border-color: var(--tinta); box-shadow: 0 10px 26px rgba(27,33,64,.12); }
+  .oferta .fita { position: absolute; top: -12px; left: 18px; background: var(--marca); font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; }
+  .oferta .linha { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 6px; }
+  .oferta .valor { font-family: var(--titulo); font-size: 30px; font-weight: 800; white-space: nowrap; }
+  .oferta p { color: var(--tinta-2); font-size: 15px; }
+  .avulsos { display: grid; gap: 12px; }
+
+  .garantia { display: flex; gap: 14px; align-items: center; }
+  .garantia .selo { flex: none; width: 64px; height: 64px; border-radius: 50%; background: var(--marca); display: grid; place-items: center; text-align: center;
+                    font-weight: 800; font-size: 12.5px; line-height: 1.05; }
+  details { background: #fff; border: 1px solid var(--linha); border-radius: 12px; padding: 13px 15px; margin-bottom: 8px; }
+  summary { font-weight: 700; cursor: pointer; }
+  details p { margin: 8px 0 0; color: var(--tinta-2); }
+
+  /* autor e serviços */
+  .autor { font-size: 16px; color: var(--tinta-2); }
+  .autor .assina { font-size: 30px; color: var(--tinta); display: block; margin-top: 6px; }
+  .servico { background: #fff; border: 1px solid var(--linha); border-left: 6px solid var(--c-sub); border-radius: 12px; padding: 16px 18px; margin: 12px 0; scroll-margin-top: 64px; }
+  .servico.mentoria { border-left-color: var(--c-adj); } .servico.palestras { border-left-color: var(--c-adv); } .servico.escolas { border-left-color: var(--c-lig); }
+  .servico p { color: var(--tinta-2); font-size: 15px; margin: 6px 0 12px; }
+  .servico a { display: inline-block; font-weight: 700; font-size: 15px; text-decoration: none; background: var(--tinta); color: #fff; padding: 10px 16px; border-radius: 10px; }
+  #livros, #ofertas, #mais { scroll-margin-top: 56px; }
+
+  .rodape { text-align: center; font-size: 12.5px; color: var(--muted); padding: 26px 0 40px; border-top: 1px solid var(--linha); }
+  .rodape .assina { font-size: 22px; color: var(--tinta); margin: 0 0 4px; }
+
+  @media (min-width: 700px) {
+    h1 { font-size: 50px; }
+    .galeria figure { flex-basis: 46%; }
+    .avulsos { grid-template-columns: 1fr 1fr; }
+    .livros { height: 400px; max-width: 460px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topo">
+  <div class="miolo">
+    <a class="assina" href="#inicio">Rafael Riemma</a>
+    <nav aria-label="Seções">
+      <a href="#ofertas">Gramática</a>
+      <a href="#mentoria">Mentoria</a>
+      <a href="#palestras">Palestras</a>
+      <a href="#escolas">Escolas</a>
+    </nav>
+  </div>
+</header>
+
+<main class="miolo" id="inicio">
+
+<!-- 1 · Capa -->
+<section class="heroi" data-testid="heroi">
+  <div class="eyebrow">Gramática da língua portuguesa</div>
+  <h1>Gramática <span class="destaque">Lógica</span></h1>
+  <div class="faixa" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="sub"><b>Quem entende a regra não precisa decorar.</b> A teoria completa num livro, o treino com gabarito comentado no outro, na mesma ordem.</p>
+  <div class="livros">
+    <img class="l1" src="img/capa-livro-1.jpg" alt="Capa do Livro 1 · Teoria" width="520" height="735">
+    <img class="l2" src="img/capa-livro-2.jpg" alt="Capa do Livro 2 · Exercícios" width="520" height="735">
+  </div>
+  <div class="numeros">
+    <div><b>74</b><span>lições</span></div>
+    <div><b>1.086</b><span>páginas</span></div>
+    <div><b>+500</b><span>questões de prova</span></div>
+  </div>
+  <div class="preco" data-testid="preco-topo">
+    <div class="selo-black" data-black hidden>Black Lógica · até 30/11</div>
+    <div class="de" data-preco-de>Separados, R$ 148</div>
+    <div class="por" data-preco-pacote>R$ 127</div>
+    <div class="parc">os dois livros em PDF · pagamento único</div>
+  </div>
+  <a class="cta" data-compra="pacote" data-testid="comprar-topo" href="#ofertas">Quero os dois livros<small>o acesso chega por e-mail</small></a>
+  <p class="seguro">Pix ou cartão · pagamento único</p>
+</section>
+
+<!-- 2 · Como funciona -->
+<section id="livros">
+  <h2>Primeiro você descobre. Depois, entende. No fim, treina.</h2>
+  <div class="passo"><span class="n" style="background:var(--c-sub)">1</span><div><h3>Descubra a regra</h3>
+    <p>Cada lição começa com pares de frases. Você compara, percebe o que muda e chega à regra sozinho, antes da explicação.</p></div></div>
+  <div class="passo"><span class="n" style="background:var(--c-adj)">2</span><div><h3>Leia as cores</h3>
+    <p>Cada cor é uma família de palavras, e ela acompanha a palavra da classe até a função na frase.</p>
+    <div class="cores" aria-label="Exemplo das cores: A professora nova chegou cedo à escola.">
+      <span style="color:var(--c-adj)">A</span> <span style="color:var(--c-sub)">professora</span> <span style="color:var(--c-adj)">nova</span>
+      <span style="color:var(--c-vrb)">chegou</span> <span style="color:var(--c-adv)">cedo</span> <span style="color:var(--c-lig)">à</span> <span style="color:var(--c-sub)">escola.</span>
+      <small>artigo · substantivo · adjetivo · verbo · advérbio · preposição + artigo · substantivo</small>
+    </div></div></div>
+  <div class="passo"><span class="n" style="background:var(--c-vrb)">3</span><div><h3>Treine no Livro 2</h3>
+    <p>A lição 58 é a crase lá e a crase aqui. São três níveis por lição, com questões reais de Enem, Fuvest, Unicamp e outras, e gabarito comentado que explica o porquê.</p></div></div>
+
+  <h2 style="margin-top:26px">Veja por dentro</h2>
+  <p class="dica-arraste">Arraste para o lado para ver as páginas da lição de crase.</p>
+  <div class="galeria" data-testid="galeria" tabindex="0" aria-label="Páginas de amostra da lição de crase">
+    <figure><img src="img/descubra.jpg" alt="Página Descubra a regra da lição de crase" loading="lazy" width="720" height="1018"><figcaption><b>Descubra a regra:</b> pares de frases, perguntas e uma curiosidade no pé.</figcaption></figure>
+    <figure><img src="img/mapa.jpg" alt="Mapa da crase" loading="lazy" width="720" height="1018"><figcaption><b>Mapa da lição:</b> a regra inteira numa página só.</figcaption></figure>
+    <figure><img src="img/teoria.jpg" alt="Página de teoria da crase" loading="lazy" width="720" height="1018"><figcaption><b>Teoria:</b> de onde vem cada "a", com exemplos em cores.</figcaption></figure>
+    <figure><img src="img/treino.jpg" alt="Página de exercícios da crase no Livro 2" loading="lazy" width="720" height="1018"><figcaption><b>Livro 2:</b> treino do básico ao nível de vestibular.</figcaption></figure>
+    <figure><img src="img/gabarito.jpg" alt="Gabarito comentado da crase" loading="lazy" width="720" height="1018"><figcaption><b>Gabarito comentado:</b> a resposta e o porquê de cada uma.</figcaption></figure>
+  </div>
+
+  <div class="caixa partes">
+    <h3>Livro 1 · Teoria (685 páginas)</h3>
+    <ul>
+      <li><b style="color:var(--c-sub)">Os sons e a escrita:</b> fonema, sílaba, acento, hífen, ortografia.</li>
+      <li><b style="color:var(--c-adj)">As palavras:</b> as dez classes e como se formam.</li>
+      <li><b style="color:var(--c-vrb)">A frase e o período:</b> sujeito, predicado, orações.</li>
+      <li><b style="color:var(--c-adv)">As normas:</b> concordância, regência, crase, colocação, pontuação.</li>
+      <li><b style="color:var(--c-lig)">O sentido:</b> semântica, figuras, coesão, adequação.</li>
+    </ul>
+  </div>
+  <div class="caixa">
+    <h3>Livro 2 · Exercícios (401 páginas)</h3>
+    <ul>
+      <li>As mesmas 74 lições, com o mesmo número do Livro 1.</li>
+      <li><b>●○○ Básico:</b> aplica a regra, com o 1º item resolvido como modelo.</li>
+      <li><b>●●○ Médio:</b> resolve e escreve o porquê da resposta.</li>
+      <li><b>●●● Avançado:</b> questões no estilo das provas, com texto e imagem.</li>
+      <li><b>Gabarito comentado</b> no fim, lição por lição.</li>
+    </ul>
+  </div>
+  <div class="caixa">
+    <h3>Para quem é</h3>
+    <ul>
+      <li>Aluno do 8º e do 9º ano que quer firmar a base.</li>
+      <li>Ensino médio, Enem e vestibular.</li>
+      <li>Pais que acompanham o estudo dos filhos.</li>
+      <li>Professores que querem um material para usar em aula.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3 · Ofertas -->
+<section id="ofertas" data-testid="ofertas">
+  <h2>Escolha o seu</h2>
+  <div class="oferta principal" data-testid="oferta-pacote">
+    <span class="fita">Pacote completo</span>
+    <div class="linha"><h3>Os dois livros</h3><span class="valor" data-preco-pacote>R$ 127</span></div>
+    <p><span data-economia>Você economiza R$ 21</span> e tem a teoria e o treino, na mesma ordem.</p>
+    <a class="cta" data-compra="pacote" data-testid="comprar-pacote" href="#ofertas">Quero os dois livros</a>
+  </div>
+  <div class="avulsos">
+    <div class="oferta" data-testid="oferta-livro1">
+      <div class="linha"><h3>Só a teoria</h3><span class="valor">R$ 99</span></div>
+      <p>Livro 1 · 685 páginas.</p>
+      <a class="cta claro" data-compra="livro1" data-testid="comprar-livro1" href="#ofertas">Quero o Livro 1</a>
+    </div>
+    <div class="oferta" data-testid="oferta-livro2">
+      <div class="linha"><h3>Só os exercícios</h3><span class="valor">R$ 49</span></div>
+      <p>Livro 2 · 401 páginas, com gabarito comentado.</p>
+      <a class="cta claro" data-compra="livro2" data-testid="comprar-livro2" href="#ofertas">Quero o Livro 2</a>
+    </div>
+  </div>
+
+  <div class="caixa garantia">
+    <div class="selo">7 dias<br>de garantia</div>
+    <p style="margin:0">Você tem 7 dias para desistir da compra, como garante o Código de Defesa do Consumidor. O pedido é feito pela própria Cakto, no e-mail da compra.</p>
+  </div>
+
+  <h3 style="margin:22px 0 10px">Perguntas frequentes</h3>
+  <details><summary>Como eu recebo?</summary><p>Quando o pagamento é aprovado, chega um e-mail com o acesso. Os livros ficam numa área de alunos, de onde você baixa os PDFs. Se o e-mail não chegar, olhe a caixa de spam ou chame no Direct.</p></details>
+  <details><summary>É livro impresso?</summary><p>Não, os livros são em PDF. Você lê no celular, no tablet ou no computador e, se quiser, imprime só as páginas que for usar.</p></details>
+  <details><summary>Posso comprar só um livro?</summary><p>Pode. O Livro 1 sozinho custa R$ 99, e o Livro 2, R$ 49. Os dois juntos saem mais em conta.</p></details>
+  <details><summary>Serve para quem está no 8º ou no 9º ano?</summary><p>Serve. As lições começam do básico, e cada uma explica a regra antes de cobrar. O nível avançado prepara para o ensino médio e o vestibular.</p></details>
+  <details><summary>Quais são as formas de pagamento?</summary><p>Pix ou cartão de crédito, entre outras que aparecem no pagamento. O pagamento é único: não tem mensalidade.</p></details>
+</section>
+
+<!-- 4 · Autor e serviços -->
+<section id="mais" data-testid="mais">
+  <h2>Quem escreveu</h2>
+  <p class="autor">Professor de língua portuguesa e redação há mais de 20 anos e autor de gramática. Os dois livros nasceram da sala de aula: cada regra é ensinada pelo porquê, para o aluno entender em vez de decorar.
+    <span class="assina">Prof. Rafael Riemma</span></p>
+
+  <h2 style="margin-top:26px">Quer ir além dos livros?</h2>
+  <div class="servico mentoria" id="mentoria" data-testid="servico-mentoria">
+    <h3>Mentoria · a jornada do estudante</h3>
+    <p>Para o aluno que quer chegar ao Enem e ao vestibular com disciplina e método. Começa por um diagnóstico de estudo e segue, se você quiser, com acompanhamento.</p>
+    <a data-contato href="https://ig.me/m/rriemma" target="_blank" rel="noopener">Falar comigo no Direct</a>
+  </div>
+  <div class="servico palestras" id="palestras" data-testid="servico-palestras">
+    <h3>Palestras</h3>
+    <p>Para escolas, cursinhos e empresas: palestras para alunos, formação de professores e encontros com os pais, presenciais ou online.</p>
+    <a data-contato href="https://ig.me/m/rriemma" target="_blank" rel="noopener">Falar comigo no Direct</a>
+  </div>
+  <div class="servico escolas" id="escolas" data-testid="servico-escolas">
+    <h3>Plataforma para escolas</h3>
+    <p>A plataforma de estudo que eu criei, para a sua escola usar com as turmas. Chame no Direct para conhecer e receber uma proposta.</p>
+    <a data-contato href="https://ig.me/m/rriemma" target="_blank" rel="noopener">Falar comigo no Direct</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="rodape">
+  <div class="assina">Prof. Rafael Riemma</div>
+  <div>Gramática Lógica · 1ª edição, 2026</div>
+  <div>Dúvidas e atendimento: Direct do <a href="https://ig.me/m/rriemma" target="_blank" rel="noopener">@rriemma</a></div>
+</footer>
+
+<script>
+// ===== Configuração: links de compra da Cakto e período da Black Lógica =====
+var CHECKOUT = {
+  pacote: "https://pay.cakto.com.br/rmbpeek_1333273",        // os dois livros, R$ 127
+  pacoteBlack: "https://pay.cakto.com.br/397dkvx",   // os dois livros na Black Lógica, R$ 99 (oferta do mesmo produto)
+  livro1: "https://pay.cakto.com.br/xtos7c2_1333323",        // Livro 1, R$ 99
+  livro2: "https://pay.cakto.com.br/3dyi6vw_1333348"         // Livro 2, R$ 49
+};
+var BLACK = { inicio: "2026-11-25T00:00:00-03:00", fim: "2026-12-01T00:00:00-03:00" };  // fim = 1º/12 à meia-noite de Brasília
+
+function emBlack(agora) {
+  var t = (agora || new Date()).getTime();
+  return t >= Date.parse(BLACK.inicio) && t < Date.parse(BLACK.fim);
+}
+
+function linkDe(qual, black) {
+  // Na Black, os dois livros só vendem pelo link da Black: sem ele, o botão fica indisponível (nunca R$ 99 na tela e R$ 127 no pagamento).
+  if (qual === "pacote" && black) return CHECKOUT.pacoteBlack;
+  return CHECKOUT[qual];
+}
+
+function aplicar() {
+  var black = emBlack();
+  document.querySelectorAll("[data-black]").forEach(function (e) { e.hidden = !black; });
+  document.querySelectorAll("[data-preco-pacote]").forEach(function (e) { e.textContent = black ? "R$ 99" : "R$ 127"; });
+  document.querySelectorAll("[data-preco-de]").forEach(function (e) {
+    e.innerHTML = black ? "de <s>R$ 127</s> por" : "Separados, R$ 148";
+  });
+  document.querySelectorAll("[data-economia]").forEach(function (e) {
+    e.textContent = black ? "Na Black Lógica, sai por R$ 99" : "Você economiza R$ 21";
+  });
+  document.querySelectorAll("[data-compra]").forEach(function (a) {
+    var link = linkDe(a.getAttribute("data-compra"), black);
+    if (link) { a.href = link; a.removeAttribute("aria-disabled"); a.removeAttribute("title"); }
+    else { a.href = "#ofertas"; a.setAttribute("aria-disabled", "true"); a.title = "Compra disponível em breve"; }
+  });
+}
+// Confere de novo ao voltar para a aba, a cada minuto e na hora do clique: quem deixou a página aberta na virada da Black vê o preço certo.
+document.addEventListener("visibilitychange", function () { if (!document.hidden) aplicar(); });
+setInterval(aplicar, 60000);
+document.addEventListener("click", function (ev) {
+  var a = ev.target.closest && ev.target.closest("[data-compra]");
+  if (a) aplicar();
+}, true);
+aplicar();
+</script>
+</body>
+</html>
