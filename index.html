@@ -115,6 +115,11 @@
   /* autor e serviços */
   .autor { font-size: 16px; color: var(--tinta-2); }
   .autor .assina { font-size: 30px; color: var(--tinta); display: block; margin-top: 6px; }
+  .agente { display: flex; gap: 16px; align-items: flex-start; margin: 10px 0 4px; }
+  .agente img { width: 38%; max-width: 170px; border-radius: 4px 8px 8px 4px; box-shadow: 0 12px 24px rgba(27,33,64,.2); }
+  .agente ul { margin: 0; padding-left: 18px; color: var(--tinta-2); font-size: 15px; }
+  .agente li { margin-bottom: 6px; }
+  #agente { scroll-margin-top: 64px; }
   .servico { background: #fff; border: 1px solid var(--linha); border-left: 6px solid var(--c-sub); border-radius: 12px; padding: 16px 18px; margin: 12px 0; scroll-margin-top: 64px; }
   .servico.mentoria { border-left-color: var(--c-adj); } .servico.palestras { border-left-color: var(--c-adv); } .servico.escolas { border-left-color: var(--c-lig); }
   .servico p { color: var(--tinta-2); font-size: 15px; margin: 6px 0 12px; }
@@ -139,6 +144,7 @@
     <a class="assina" href="#inicio">Rafael Riemma</a>
     <nav aria-label="Seções">
       <a href="#ofertas">Gramática</a>
+      <a href="#agente">Agente de estudo</a>
       <a href="#mentoria">Mentoria</a>
       <a href="#palestras">Palestras</a>
       <a href="#escolas">Escolas</a>
@@ -264,6 +270,27 @@
   <details><summary>Quais são as formas de pagamento?</summary><p>Pix ou cartão de crédito, entre outras que aparecem no pagamento. O pagamento é único: não tem mensalidade.</p></details>
 </section>
 
+<!-- 3b · Kit Monte seu agente de estudo -->
+<section id="agente" data-testid="agente">
+  <h2>Novo · Monte seu agente de estudo</h2>
+  <p>Transforme a IA grátis que você já tem num treinador de estudo que <b>pergunta, testa e corrige o caminho</b>, em vez de fazer o dever por você. Monta em 15 minutos, com um adulto do lado.</p>
+  <div class="agente">
+    <img src="img/capa-agente.jpg" alt="Capa do kit Monte seu agente de estudo" width="420" height="594" loading="lazy">
+    <ul>
+      <li>Prompt pronto para colar num Projeto do ChatGPT (e versão curta para outras IAs)</li>
+      <li>12 comandos do dia: me testar, revisão, redação, simulado</li>
+      <li>Caderno de resumos e revisões em 1, 3, 7, 14 e 30 dias</li>
+      <li>A conversa de domingo para os pais, em 5 minutos</li>
+    </ul>
+  </div>
+  <div class="oferta principal" data-testid="oferta-agente">
+    <span class="fita">Do 8º ano ao vestibular</span>
+    <div class="linha"><h3>Kit em PDF · 12 páginas</h3><span class="valor">R$ 19,90</span></div>
+    <p>Pagamento único. Sem pagar nenhuma IA.</p>
+    <a class="cta" data-compra="agente" data-testid="comprar-agente" href="#agente">Quero o kit<small>o acesso chega por e-mail</small></a>
+  </div>
+</section>
+
 <!-- 4 · Autor e serviços -->
 <section id="mais" data-testid="mais">
   <h2>Quem escreveu</h2>
@@ -302,7 +329,8 @@ var CHECKOUT = {
   pacote: "https://pay.cakto.com.br/rmbpeek_1333273",        // os dois livros, R$ 127
   pacoteBlack: "https://pay.cakto.com.br/397dkvx",   // os dois livros na Black Lógica, R$ 99 (oferta do mesmo produto)
   livro1: "https://pay.cakto.com.br/xtos7c2_1333323",        // Livro 1, R$ 99
-  livro2: "https://pay.cakto.com.br/3dyi6vw_1333348"         // Livro 2, R$ 49
+  livro2: "https://pay.cakto.com.br/3dyi6vw_1333348",        // Livro 2, R$ 49
+  agente: "https://pay.cakto.com.br/3ezu8ys_1349539"        // kit Monte seu agente de estudo, R$ 19,90
 };
 var BLACK = { inicio: "2026-11-25T00:00:00-03:00", fim: "2026-12-01T00:00:00-03:00" };  // fim = 1º/12 à meia-noite de Brasília
 
